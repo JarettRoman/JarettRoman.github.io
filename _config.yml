@@ -1,16 +1,16 @@
 # Site settings
-title:          Tale
-description:    "Minimal Jekyll theme for storytellers"
-url:            "https://chesterhow.github.io"
+title:          Jarett's Blog
+description:    "Jarett's Blog for his developer stuff"
+url:            "https://github.com/JarettRoman"
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         Jarett Roman
+  url:          https://github.com/JarettRoman
+  email:        afrocious@gmail.com
 
 # Build settings
 markdown:       kramdown
@@ -34,7 +34,7 @@ permalink:      /:year-:month-:day/:title
 paginate:       5
 
 # Excludes
-exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
+exclude: [ Gemfile, Gemfile.lock ]
 
 # Disqus (Set to your disqus id)
 disqus:         jekyll-tale

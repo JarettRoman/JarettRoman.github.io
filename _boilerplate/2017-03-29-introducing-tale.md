@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Introducing Tale"
+title:  "Introducing Jarett"
 author: "Chester"
 comments: true
 tags: Tale
