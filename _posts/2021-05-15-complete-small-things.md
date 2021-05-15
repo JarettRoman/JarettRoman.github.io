@@ -6,10 +6,9 @@ tags: Work Advice
 excerpt_separator: <!--more-->
 ---
 
-You ever find yourself thinking about something you need to do, like a chore? Following thoughts are on how much effort it'll take to do The Thing.
-<!--more-->
+You ever find yourself thinking about something you need to do, like a task? Following thoughts are on how much effort it'll take to do The Thing.
 
-Sometimes, The Thing looms over you like a large pile of responsibility you wish you didn't have. And then you get yourself so psyched out, that you're already mentally exhausted - and you end up not working on The Thing.
+Sometimes, The Thing looms over you like a large pile of responsibility you wish you didn't have. And then you get yourself so psyched out, that you're already mentally exhausted - and you end up not working on The Thing.<!--more-->
 
 However, for the unlucky, The Thing might need to be handled by a certain time. By the end of the month? In two weeks? A whole year? It doesn't help that The Thing already wears us down, but as time ticks forward, it gets heavier. You feel it in your chest, your back, your shoulders, and definitely in your head - figuratively and physically.
 
