@@ -1,0 +1,24 @@
+.header {
+	text-align: center;
+	padding: 20px;
+	font-size: 2em;
+}
+
+.article-list {
+	list-style-type:none;
+	margin: 1.5em;
+	font-size: 1.5em;
+}
+
+.article {
+	margin: 0 180px 180px 180px;
+	font-size: 1.5em;
+}
+
+.article > p {
+	text-align: justify;
+}
+
+.article > h2 {
+	margin-top: 2em;
+}
