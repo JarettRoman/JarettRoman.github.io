@@ -7,7 +7,7 @@
 .article-list {
 	list-style-type:none;
 	margin: 1.5em;
-	font-size: 1.5em;
+	font-size: 16px;
 }
 
 .article {
@@ -21,4 +21,18 @@
 
 .article > h2 {
 	margin-top: 2em;
+}
+
+@media screen and (min-width: 601px) {
+	.article {
+		margin: 0 180px 180px 180px;
+		font-size: 1.5em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.article {
+		margin: 0 60px 60px 60px;
+		font-size: 2em;
+	}
 }
