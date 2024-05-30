@@ -24,17 +24,20 @@ html {
 		}
 }
 
+.article-list-container {
+	text-align: center;
+}
+
 .article-list {
-	display: flex;
-	justify-content: flex-start;
-	flex-direction: column;
+	display: inline-block;
+	padding: 0;
 	list-style-type: none;
+	text-align: center;
 	font-size: 1.6rem;
 
 
 	li {
-		display: block;
-		max-width: 360px;
+		width: 420px;
 	}
 
 	li:hover {
@@ -52,6 +55,9 @@ body {
 
 .article {
 	margin: 0 20%;
+	@media only screen and (max-width: 600px) {
+		margin: 0;
+	}
 }
 
 .article > p {
@@ -60,4 +66,7 @@ body {
 
 .article > h2 {
 	margin-top: 2em;
+		@media only screen and (max-width: 600px) {
+		text-align: center;
+	}
 }
