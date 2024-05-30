@@ -37,7 +37,10 @@ html {
 
 
 	li {
-		width: 420px;
+		width: 320px;
+		@media only screen and (min-width: 600px) {
+			width: 420px;
+		}
 	}
 
 	li:hover {
