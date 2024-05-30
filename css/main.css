@@ -19,9 +19,18 @@ html {
 		a:hover {
 			background-color: #8AA6A3;	
 		}
-		a:visited {
+		/* a:visited {
 			color: #708C87;	
-		}
+		} */
+}
+
+a:visited {
+	color: #708C87;
+}
+
+a:hover {
+	color: #3F403F;
+	background-color: #8AA6A3;	
 }
 
 .article-list-container {
@@ -44,12 +53,13 @@ html {
 	}
 
 	li:hover {
+		color: #3F403F;
 		background-color: #8AA6A3;	
 	}
 
-	a:visited {
+	/* a:visited {
 		color: #708C87;
-	}
+	} */
 }
 
 body {
