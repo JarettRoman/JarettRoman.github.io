@@ -25,17 +25,20 @@ html {
 }
 
 .article-list {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
 	list-style-type: none;
 	font-size: 1.6rem;
 
 
 	li {
-		transition: width 0.5s;
+		display: block;
+		max-width: 360px;
 	}
 
-	a > div:hover {
-		width: 33%;
-		background-color: #8AA6A3;
+	li:hover {
+		background-color: #8AA6A3;	
 	}
 
 	a:visited {
