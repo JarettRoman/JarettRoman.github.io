@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<head>
+	<link rel="stylesheet" href="../css/main.css">
+	<title>WordPress - Local Setup</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<html lang="en">
+<div class="header">
+	<h1>WordPress - Local Setup</h1>
+	<p>6/3/24</p>
+</div>
+<nav class="nav-container">
+	<div>
+		<a href="/">Home</a>
+	</div>
+	<!-- <div>Search</div>
+	<div>Logout</div> -->
+</nav>
+<div class="article">
+
+	<body>
+		<h2>What are we doing?</h2>
+		<p>
+			We want to set up WordPress on our machine. We want to build websites in a professional manner, but we
+			want to do it fast and deliverable. So it would behoove us to work on our personal computer
+			on our local networks to start off. Then once we build the site we can figure out how to deploy it in a safe,
+			secure, and fast
+			manner onto the internet to provide value to your clients.
+		</p>
+
+		<p>The <a href="https://learn.wordpress.org/" target="_blank">official WordPress documentation</a> suggests using an
+			external host provider to get setup to follow their hands-on guides. With Docker and the instructions here,
+			there's no need to do so. This is free and local.</p>
+
+		<h2>How?</h2>
+		<p>
+			However, I'm winging this using practices I've learned from past work. One such practice was to
+			have a Docker container with an isolated environment that we can access on our machine
+			where we can just launch a command, and start working on our locally hosted WordPress site.
+		</p>
+
+		<h2>What do we need to begin?</h2>
+		<ul>
+			<li>
+				Install Docker
+			</li>
+			<li>
+				A Docker Compose file
+			</li>
+			<li>
+				Very basic handling of <a href="https://en.wikipedia.org/wiki/Command-line_interface">the command line</a>.
+				I'll be using Terminal on MacOS.
+			</li>
+		</ul>
+
+		<h2>Installing Docker</h2>
+		<p>
+			I use a Macbook, so I went ahead and installed Docker from
+			<a href="https://docs.docker.com/engine/install/" target="_blank">here</a>.
+			You want to use the official docs when it comes to installing stuff, so read up.
+		</p>
+
+		<img src="/assets/docker_dashboard.png">
+		<footer>Screenshot of Docker Dashboard on MacOS. Right now, yours is likely empty. Not for long though.</footer>
+
+		<h2>Using Docker Compose</h2>
+		<p>
+			Docker Compose is actually a tool integrated with Docker to streamline setting up
+			and running containers. It will allow us to run a simple script to handle creating the container hosting WordPress
+			for us.
+		</p>
+
+		<p>
+			First, make a new directory called <code>wordpress</code>.
+		</p>
+
+		<p>
+			Mine is located at <code>/Users/jarett/Developer/wordpress</code>.
+		</p>
+		<img src="/assets/wordpress_location.png">
+
+		<p>
+			Inside your <code>wordpress</code> folder, make a file named <code>docker-compose.yml</code>.
+		</p>
+
+		<p>Within <code>docker-compose.yml</code>, insert the following:</p>
+		<pre>
+			<code>
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: MyR00tMySQLPa$$5w0rD
+      MYSQL_DATABASE: MyWordPressDatabaseName
+      MYSQL_USER: MyWordPressUser
+      MYSQL_PASSWORD: Pa$$5w0rD
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: MyWordPressUser
+      WORDPRESS_DB_PASSWORD: Pa$$5w0rD
+      WORDPRESS_DB_NAME: MyWordPressDatabaseName
+    volumes:
+      ["./:/var/www/html"]
+volumes:
+  mysql: {}
+
+			</code>
+		</pre>
+
+		<p>
+			Save the <code>docker-compose.yml</code> file, then run <code>docker compose up -d</code> in the command line
+			within your
+			wordpress directory.
+		</p>
+		<img src="/assets/running_docker_compose.png">
+		<footer>You can definitely tell a new day passed when I was working on this guide.</footer>
+
+		<p>
+			What's happening here is that two containers are being built out with the services
+			defined in our docker compose file. One for the WordPress application itself, and
+			another for the MySQL database WordPress requires (note in the compose file, this is
+			specifically written out with the <code>depends_on</code> keyword above).
+		</p>
+
+		<p>
+			Now, we can visit <a href="http://localhost:8000" target="_blank">localhost:8000</a> in our browser. Since
+			the container is working, this should bring you to your local WordPress instance we just
+			setup.
+		</p>
+		<img src="/assets/local_wordpress_install.png">
+
+		<p>
+			Awesome! We did it! But there's a few things we can do to make this a bit more secure.
+			Namely with the passwords we have explicitly written in our docker-compose file.
+		</p>
+		<pre>
+			<code>
+MYSQL_ROOT_PASSWORD: MyR00tMySQLPa$$5w0rD
+MYSQL_DATABASE: MyWordPressDatabaseName
+MYSQL_USER: MyWordPressUser
+MYSQL_PASSWORD: Pa$$5w0rD
+			</code>
+		</pre>
+
+		<p>
+			I got the contents for the docker compose file from <a
+				href="https://www.hostinger.com/tutorials/run-docker-wordpress" target="_blank">this handy tutorial</a>.
+			However, having the <code>MYSQL_ROOT_PASSWORD</code> and <code>MYSQL_PASSWORD</code> values exposed as they are
+			can set us up for trouble in the future if you're not careful.
+		</p>
+
+		<p>
+			We will <i>definitely</i> want to change these values
+			to something personal and private (preferably randomized with a reputable password generator such as <a
+				href="https://1password.com/">1Password</a>.
+		</p>
+
+		<p>Let's walk through how to obfuscate our passwords while still having a shareable docker compose file.</p>
+
+		<h2>Securing Passwords</h2>
+
+		<p>
+			First, let's kill our container. An easy way to do this is through the Docker Dashboard.
+			Click the little trash can icon next to our WordPress container. A prompt will appear asking if we want
+			to delete the WordPress compose project forever. We sure do (for now!).
+		</p>
+
+		<img src="/assets/delete_forever.png">
+		<footer>Nothing lasts forever . . .</footer>
+
+		<p>
+			Poof. It's gone! But we'll get it back, better than ever.
+		</p>
+
+		<p>
+			Now, we're going to implement something called secrets. Essentially, we'll use these secret keys
+			that will contain our passwords. But, instead of directly pasting our passwords into the compose file,
+			we'll paste references to your passwords instead, which will be contained in separate text files on our machine.
+			That way, the passwords will only be accessible from one place, and not freely out in the open.
+		</p>
+
+		<p>
+			First, let's make a new folder within our WordPress directory called <code>secrets</code>. This is the folder
+			where we'll store our passwords in individual text files.
+		</p>
+
+		<img src="/assets/secrets_folder_new.png">
+
+		<p>
+			Now lets make two new files named <code>mysql_root_password.txt</code> and <code>mysql_password.txt</code>. Put
+			these in the
+			secrets folder. Then add the respective passwords to the files (<code>MYSQL_ROOT_PASSWORD</code>'s value into
+			<code>mysql_root_password.txt</code> and
+			<code>MYSQL_PASSWORD</code>'s value into <code>mysql_password.txt</code>).
+		</p>
+
+		<p>
+			A way to do this from the command line would look like this:
+		<pre>
+				<code>
+echo "MyR00tMySQLPa$$5w0rD" > mysql_root_password.txt
+echo "Pa$$5w0rD" > mysql_root_password.txt
+				</code>
+			</pre>
+		</p>
+
+		<p>
+			Definitely choose different passwords. These are simply examples.
+		</p>
+
+		<p>
+			Now back to your <code>docker-compose.yml</code> file. Edit it so it looks like the following:
+		<pre>
+				<code>
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: MyWordPressDatabaseName
+      MYSQL_USER: MyWordPressUser
+      MYSQL_PASSWORD: /run/secrets/mysql_password
+    secrets:
+      - mysql_root_password
+      - mysql_password
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: MyWordPressUser
+      WORDPRESS_DB_PASSWORD: /run/secrets/mysql_password
+      WORDPRESS_DB_NAME: MyWordPressDatabaseName
+    secrets:
+      - mysql_password
+    volumes:
+      ["./:/var/www/html"]
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password.txt
+  mysql_password:
+    file: ./secrets/mysql_password.txt
+volumes:
+  mysql: {}
+				</code>
+			</pre>
+		</p>
+
+		<p>
+			We should bring our attention to this addition:
+		<pre>
+				<code>
+secrets:
+  mysql_root_password:
+    file: ./secrets/mysql_root_password.txt
+  mysql_password:
+    file: ./secrets/mysql_password.txt
+				</code>
+			</pre>
+		</p>
+
+		<p>
+			Here, we're telling Docker that we want to use secrets defined in specified .txt files and assign them
+			variable names <code>mysql_root_password</code> and <code>mysql_password</code>.
+		</p>
+
+		<p>
+			In both service entires we have in our docker-compose file, we must specify which of our
+			new secrets we'd like to use. So for our database service, we're going to use both
+			secrets, therefore we must give it a <code>secrets</code> entry telling it which secret
+			variables we want to use, and then use them in place of our passwords.
+		</p>
+		<pre>
+			<code>
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: MyWordPressDatabaseName
+      MYSQL_USER: MyWordPressUser
+      MYSQL_PASSWORD: /run/secrets/mysql_password
+    secrets:
+      - mysql_root_password
+      - mysql_password
+			</code>
+		</pre>
+
+		<p>
+			Note that when we're replacing the hardcoded passwords with our secrets, we must prefix them with
+			<code>/run/secrets/</code>.
+			This tells Docker to open our text files with the secrets and use the contents within to send to the services.
+		</p>
+
+		<p>Same with the wordpress service. Both changes are needed in both services.</p>
+		<pre>
+			<code>
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: MyWordPressUser
+      WORDPRESS_DB_PASSWORD: /run/secrets/mysql_password
+      WORDPRESS_DB_NAME: MyWordPressDatabaseName
+    secrets:
+      - mysql_password
+			</code>
+		</pre>
+
+		<p>
+			Once those changes are implemented, we can rerun <code>docker compose up -d</code>.
+			And voila! You should be able to go back to <a href="http://localhost:8000" target="_blank">localhost:8000</a>
+			like before, but
+			now with the passwords abstracted out of the code.
+		</p>
+
+		<p>
+			We didn't set up any source control in this tutorial, but if you're curious, we would <i>not</i> share our secrets
+			folder.
+			If anyone wants to work alongside you, they would need to make a local text files with their own secret passwords.
+		</p>
+
+	</body>
+</div>
+
+</html>

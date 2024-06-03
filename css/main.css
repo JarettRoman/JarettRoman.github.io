@@ -2,6 +2,8 @@ html {
 	font-size: 16px;
 	color: #0D0D0D;
 	background-color: #D9D5D2;
+	/* font-family: Roboto, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace; */
+	font-family: 'Times New Roman', Times, serif
 }
 
 .header {
@@ -19,9 +21,6 @@ html {
 		a:hover {
 			background-color: #8AA6A3;	
 		}
-		/* a:visited {
-			color: #708C87;	
-		} */
 }
 
 a:visited {
@@ -56,14 +55,6 @@ a:hover {
 		color: #3F403F;
 		background-color: #8AA6A3;	
 	}
-
-	/* a:visited {
-		color: #708C87;
-	} */
-}
-
-body {
-  font-size: calc(1.05rem + 0.390625vw);
 }
 
 .article {
@@ -82,4 +73,42 @@ body {
 		@media only screen and (max-width: 600px) {
 		text-align: center;
 	}
+}
+
+body {
+  font-size: calc(1.05rem + 0.390625vw);
+}
+
+footer {
+	font-style: italic;
+	width: 70%;
+	text-align: center;
+}
+
+img {
+	width: 70%;
+}
+
+.code-example {
+	border-top: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin-top: 0;
+}
+
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #8AA6A3;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
 }
