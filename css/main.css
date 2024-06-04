@@ -45,6 +45,7 @@ a:hover {
 
 
 	li {
+		height: 48px;
 		width: 320px;
 		@media only screen and (min-width: 600px) {
 			width: 420px;
@@ -81,12 +82,14 @@ body {
 
 footer {
 	font-style: italic;
-	width: 70%;
+	width: 100%;
 	text-align: center;
 }
 
 img {
-	width: 70%;
+	height: auto;
+	width: 100%;
+	/* max-width: 30%; */
 }
 
 .code-example {

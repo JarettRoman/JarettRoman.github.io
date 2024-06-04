@@ -2,8 +2,9 @@
 
 <head>
 	<link rel="stylesheet" href="../css/main.css">
-	<title>WordPress - Local Setup</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Author: Jarett Roman, Post: Wordpress - Local Setup">
+	<title>WordPress - Local Setup</title>
 </head>
 <html lang="en">
 <div class="header">
@@ -14,8 +15,6 @@
 	<div>
 		<a href="/">Home</a>
 	</div>
-	<!-- <div>Search</div>
-	<div>Logout</div> -->
 </nav>
 <div class="article">
 
@@ -57,11 +56,11 @@
 		<h2>Installing Docker</h2>
 		<p>
 			I use a Macbook, so I went ahead and installed Docker from
-			<a href="https://docs.docker.com/engine/install/" target="_blank">here</a>.
+			<a href="https://docs.docker.com/engine/install/" target="_blank">the official Docker download/install page</a>.
 			You want to use the official docs when it comes to installing stuff, so read up.
 		</p>
 
-		<img src="/assets/docker_dashboard.png">
+		<img src="/assets/docker_dashboard.webp" alt="Docker Dashboard" width="2548" height="1436">
 		<footer>Screenshot of Docker Dashboard on MacOS. Right now, yours is likely empty. Not for long though.</footer>
 
 		<h2>Using Docker Compose</h2>
@@ -78,7 +77,7 @@
 		<p>
 			Mine is located at <code>/Users/jarett/Developer/wordpress</code>.
 		</p>
-		<img src="/assets/wordpress_location.png">
+		<img src="/assets/wordpress_location.webp" alt="Wordpress Location" width="1138" height="798">
 
 		<p>
 			Inside your <code>wordpress</code> folder, make a file named <code>docker-compose.yml</code>.
@@ -121,7 +120,7 @@ volumes:
 			within your
 			wordpress directory.
 		</p>
-		<img src="/assets/running_docker_compose.png">
+		<img src="/assets/running_docker_compose.webp" alt="Running Docker Compose" width="1134" height="798">
 		<footer>You can definitely tell a new day passed when I was working on this guide.</footer>
 
 		<p>
@@ -136,7 +135,7 @@ volumes:
 			the container is working, this should bring you to your local WordPress instance we just
 			setup.
 		</p>
-		<img src="/assets/local_wordpress_install.png">
+		<img src="/assets/local_wordpress_install.webp" alt="Wordpress Install" width="2878" height="1592">
 
 		<p>
 			Awesome! We did it! But there's a few things we can do to make this a bit more secure.
@@ -174,7 +173,7 @@ MYSQL_PASSWORD: Pa$$5w0rD
 			to delete the WordPress compose project forever. We sure do (for now!).
 		</p>
 
-		<img src="/assets/delete_forever.png">
+		<img src="/assets/delete_forever.webp" alt="Deleting Container" width="2548" height="1436">
 		<footer>Nothing lasts forever . . .</footer>
 
 		<p>
@@ -193,7 +192,7 @@ MYSQL_PASSWORD: Pa$$5w0rD
 			where we'll store our passwords in individual text files.
 		</p>
 
-		<img src="/assets/secrets_folder_new.png">
+		<img src="/assets/secrets_folder_new.webp" alt="Secrets folder" width="1154" height="176">
 
 		<p>
 			Now lets make two new files named <code>mysql_root_password.txt</code> and <code>mysql_password.txt</code>. Put
