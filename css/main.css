@@ -2,7 +2,6 @@ html {
 	font-size: 16px;
 	color: #0D0D0D;
 	background-color: #D9D5D2;
-	/* font-family: Roboto, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace; */
 	font-family: 'Times New Roman', Times, serif
 }
 
@@ -19,7 +18,8 @@ html {
 			margin: 1rem;
 		}
 		a:hover {
-			background-color: #8AA6A3;	
+			background-color: #8AA6A3;
+			color: #3F403F;
 		}
 }
 
@@ -27,10 +27,10 @@ a:visited {
 	color: #708C87;
 }
 
-a:hover {
+/* a:hover {
 	color: #3F403F;
 	background-color: #8AA6A3;	
-}
+} */
 
 .article-list-container {
 	text-align: center;
@@ -45,16 +45,22 @@ a:hover {
 
 
 	li {
-		height: 48px;
+		margin: 4px;
 		width: 320px;
 		@media only screen and (min-width: 600px) {
 			width: 420px;
 		}
+		a {
+			text-decoration: none;
+		}
+		
 	}
 
 	li:hover {
-		color: #3F403F;
-		background-color: #8AA6A3;	
+		background-color: #8AA6A3;
+		a {
+			color: #3F403F;
+		}
 	}
 }
 
@@ -89,7 +95,6 @@ footer {
 img {
 	height: auto;
 	width: 100%;
-	/* max-width: 30%; */
 }
 
 .code-example {
